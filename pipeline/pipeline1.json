@@ -1,0 +1,151 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Destination",
+						"value": "dbo.SampleTable"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['page']"
+								},
+								"sink": {
+									"name": "page"
+								}
+							},
+							{
+								"source": {
+									"path": "$['per_page']"
+								},
+								"sink": {
+									"name": "per_page"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total']"
+								},
+								"sink": {
+									"name": "total"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_pages']"
+								},
+								"sink": {
+									"name": "total_pages"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "['email']"
+								},
+								"sink": {
+									"name": "email"
+								}
+							},
+							{
+								"source": {
+									"path": "['first_name']"
+								},
+								"sink": {
+									"name": "first_name"
+								}
+							},
+							{
+								"source": {
+									"path": "['last_name']"
+								},
+								"sink": {
+									"name": "last_name"
+								}
+							},
+							{
+								"source": {
+									"path": "['avatar']"
+								},
+								"sink": {
+									"name": "avatar"
+								}
+							},
+							{
+								"source": {
+									"path": "$['support']['url']"
+								},
+								"sink": {
+									"name": "url"
+								}
+							},
+							{
+								"source": {
+									"path": "$['support']['text']"
+								},
+								"sink": {
+									"name": "text"
+								}
+							},
+							null
+						],
+						"collectionReference": "$['data']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "RestResource1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-07-29T23:03:17Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

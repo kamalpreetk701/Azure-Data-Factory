@@ -1,0 +1,9 @@
+{
+	"name": "DeviceMarketplace",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "314a5c02-28b7-4a2a-bc3f-2dcdcda76356",
+		"tenantId": "a6d46796-f9fa-4372-a102-f9c0eaf83151"
+	}
+}
